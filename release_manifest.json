@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "project": "Slayers Royal 2 English Patch",
+  "disc_id": "SLPS-02115",
+  "patch_version": "2026-08-09.2",
+  "source": {
+    "bin": {
+      "name": "sr2.bin",
+      "size": 717101280,
+      "sha256": "f3c307b4ba5fd5687da6a24338df2d214a680670239ed93488285007431503e9"
+    },
+    "cue": {
+      "name": "sr2.cue",
+      "size": 69,
+      "sha256": "b7748ac4657613a78ee5a2be6e931004d38bc185130edeefe68505e8d5ec17c0"
+    }
+  },
+  "target": {
+    "bin": {
+      "name": "sr2_patched.bin",
+      "size": 737086224,
+      "sha256": "6af42d766bc5aaa3a695f602feea00fb85d1f611f705c40e85a2ec06cfd09f1a"
+    },
+    "cue": {
+      "name": "sr2_patched.cue",
+      "size": 77,
+      "sha256": "7e0a6c027d263fa572337c7043d0aafabb7211333580699114e6544b65e5fabb"
+    }
+  },
+  "patches": {
+    "bin": {
+      "format": "SLRXOR1",
+      "storage": "xz",
+      "block_size": 65536,
+      "record_count": 3024,
+      "delta_size": 198154488,
+      "delta_sha256": "b70805e095e7b6e2ded8d6c5192d5164c489ffce20351a998bdeb4c5eff67458",
+      "stored_size": 168978972,
+      "stored_sha256": "752e15d6b161f37ad6a70719dd15e0225de8fe4f34d71fb13075d9404a5b57f0",
+      "parts": [
+        {
+          "path": "patches/sr2_patched.bin.slrxor.xz.part01",
+          "size": 47185920,
+          "sha256": "321c19371a4bb146ec0e18d2d529a1f39777b5efc9b40941147731010eb6e964"
+        },
+        {
+          "path": "patches/sr2_patched.bin.slrxor.xz.part02",
+          "size": 47185920,
+          "sha256": "9708c1a04599a0d78eb9ad4231093c1683d7f2674fdba84cd46de9219d289180"
+        },
+        {
+          "path": "patches/sr2_patched.bin.slrxor.xz.part03",
+          "size": 47185920,
+          "sha256": "746ed24ac37615024b40353c87380ebe1b47f650b1beb0f86715c2a09157a2fe"
+        },
+        {
+          "path": "patches/sr2_patched.bin.slrxor.xz.part04",
+          "size": 27421212,
+          "sha256": "68a2893a9d839dc7ce305159163a19be3dda758a397df3c9d1dbc3898498740e"
+        }
+      ]
+    },
+    "cue": {
+      "format": "SLRXOR1",
+      "storage": "xz",
+      "block_size": 65536,
+      "record_count": 1,
+      "delta_size": 129,
+      "delta_sha256": "11fda49a685164433f28edb186bcfb5e3b02273f266db3209b4d92c1953594c1",
+      "stored_size": 160,
+      "stored_sha256": "86953c0c3e01945e3de2f69c44660c2da298c37e1470998d132517752ece484e",
+      "parts": [
+        {
+          "path": "patches/sr2_patched.cue.slrxor.xz.part01",
+          "size": 160,
+          "sha256": "86953c0c3e01945e3de2f69c44660c2da298c37e1470998d132517752ece484e"
+        }
+      ]
+    }
+  }
+}
