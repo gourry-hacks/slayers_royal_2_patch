@@ -32,7 +32,8 @@ The current patch includes:
 - one-row layout fixes for all audited selection menus, cursor-preserving
   joined-dialogue fixes, and corrected period/ellipsis placement;
 - translated title, route, warning, ending-credit, exploration-placard, and
-  travel-map graphics;
+  travel-map graphics, including both 20-message save/load status banks used
+  by title-menu Load and in-game Save;
 - reviewed burned-in English subtitles for all ten FMV clips.
 
 The complete disc is rebuilt and independently checked for pointers, packed
@@ -170,7 +171,7 @@ Expected results:
 
 | File | Size | SHA-256 |
 | --- | ---: | --- |
-| `sr2_patched.bin` | 737,086,224 bytes | `6af42d766bc5aaa3a695f602feea00fb85d1f611f705c40e85a2ec06cfd09f1a` |
+| `sr2_patched.bin` | 737,086,224 bytes | `f954ef6c72e6443751a68ee1e4cf6cfeddd788616dab734f83e8d55e101720ac` |
 | `sr2_patched.cue` | 77 bytes | `7e0a6c027d263fa572337c7043d0aafabb7211333580699114e6544b65e5fabb` |
 
 Load `sr2_patched.cue`, not the BIN directly, in a PlayStation emulator.
