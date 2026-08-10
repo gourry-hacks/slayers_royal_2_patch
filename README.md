@@ -35,12 +35,14 @@ The current patch includes:
   travel-map graphics, including both 20-message save/load status banks used
   by title-menu Load and in-game Save, plus all 40 in-game Save-slot region and
   sublocation labels;
+- translated Camp > Status pages for every party member, including character
+  headers and the `FULLNESS`, `STAMINA`, and `MORALE` labels;
 - reviewed burned-in English subtitles for all ten FMV clips.
 
 The complete disc is rebuilt and independently checked for pointers, packed
-resources, selected FMV sectors, and unchanged XA audio sectors. The opening
-and local travel map have also been smoke-tested from a clean disc in
-PCSX-Redux. Broader route and full-playthrough QA are ongoing.
+resources, selected FMV sectors, and unchanged XA audio sectors. The opening,
+local travel map, and Camp > Status screen have also been smoke-tested from a
+clean disc in PCSX-Redux. Broader route and full-playthrough QA are ongoing.
 
 ## What You Need
 
@@ -172,7 +174,7 @@ Expected results:
 
 | File | Size | SHA-256 |
 | --- | ---: | --- |
-| `sr2_patched.bin` | 737,086,224 bytes | `9e06fe9043c97a5a074f3138744944a4856f64fdaef5d1ad912541da261c428f` |
+| `sr2_patched.bin` | 737,095,632 bytes | `772256bac808b7a78240de24a5572a5f90535b3d14c6bf9d48ac29a500493f90` |
 | `sr2_patched.cue` | 77 bytes | `7e0a6c027d263fa572337c7043d0aafabb7211333580699114e6544b65e5fabb` |
 
 Load `sr2_patched.cue`, not the BIN directly, in a PlayStation emulator.
