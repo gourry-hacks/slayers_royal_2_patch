@@ -2,7 +2,7 @@
   "schema": 1,
   "project": "Slayers Royal 2 English Patch",
   "disc_id": "SLPS-02115",
-  "patch_version": "2026-08-09.4",
+  "patch_version": "2026-08-09.5",
   "source": {
     "bin": {
       "name": "sr2.bin",
@@ -19,7 +19,7 @@
     "bin": {
       "name": "sr2_patched.bin",
       "size": 737086224,
-      "sha256": "f954ef6c72e6443751a68ee1e4cf6cfeddd788616dab734f83e8d55e101720ac"
+      "sha256": "9e06fe9043c97a5a074f3138744944a4856f64fdaef5d1ad912541da261c428f"
     },
     "cue": {
       "name": "sr2_patched.cue",
@@ -34,9 +34,9 @@
       "block_size": 65536,
       "record_count": 3027,
       "delta_size": 198351132,
-      "delta_sha256": "f255a040ab9b0bddcd74d3f0c915c2f9eb179b7659b1f14d99cf2b5c948d9566",
-      "stored_size": 169043076,
-      "stored_sha256": "c5657d5484ae97f2cee3e9009ccffc13de631ac7efa8d6dfdcedadad8a141ed8",
+      "delta_sha256": "e3372cc74c2204af1b894d93dd5e44bdc013f7a909107360dfadba563bd166a3",
+      "stored_size": 169043188,
+      "stored_sha256": "b74d2d799a5efb6bdc25635e81eab597a2944d0e74950e459817e483292a57e0",
       "parts": [
         {
           "path": "patches/sr2_patched.bin.slrxor.xz.part01",
@@ -55,8 +55,8 @@
         },
         {
           "path": "patches/sr2_patched.bin.slrxor.xz.part04",
-          "size": 27485316,
-          "sha256": "cf09a2e8a4dd58d924b0480056aee563a91d81e9acc2fe74ed1d57c18fe478a5"
+          "size": 27485428,
+          "sha256": "f97c4f3bab51dc154e1eb48ea7e3a096cde523bcfebb84c46d5f7768354f5fa0"
         }
       ]
     },
