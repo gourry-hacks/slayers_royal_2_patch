@@ -2,7 +2,7 @@
   "schema": 1,
   "project": "Slayers Royal 2 English Patch",
   "disc_id": "SLPS-02115",
-  "patch_version": "2026-08-09.6",
+  "patch_version": "2026-08-11.1",
   "source": {
     "bin": {
       "name": "sr2.bin",
@@ -19,7 +19,7 @@
     "bin": {
       "name": "sr2_patched.bin",
       "size": 737095632,
-      "sha256": "772256bac808b7a78240de24a5572a5f90535b3d14c6bf9d48ac29a500493f90"
+      "sha256": "a40bceb1e7ffdc1ec384aaa9f8926c433760293171625d418fb0f0d1d3684966"
     },
     "cue": {
       "name": "sr2_patched.cue",
@@ -34,29 +34,29 @@
       "block_size": 65536,
       "record_count": 3027,
       "delta_size": 198360540,
-      "delta_sha256": "89e76258ab957c62974c9312a8a0a495e1c4bddf961ef926934058de738a3355",
-      "stored_size": 169052772,
-      "stored_sha256": "e8ef9e1ceda298014dd0dc28f6d06cbb6295d282f1626d202eda4db7d1be11bc",
+      "delta_sha256": "0aff8771d4239ec0e570e9a23e48b869fcf45ea2e288e66269bea2ffb02ecc5d",
+      "stored_size": 169054936,
+      "stored_sha256": "88e98765db86a7aa2ab8928d25475d13a7c5b5fd09b769417bc1150e9675de0c",
       "parts": [
         {
           "path": "patches/sr2_patched.bin.slrxor.xz.part01",
           "size": 47185920,
-          "sha256": "cba09bef35e78b31aff74c5a5723140820d2594f2679db9a0b86e13c63610950"
+          "sha256": "e3a45744ab7335f6c0170e880968a1b3a33458fb7900c87bf55f31f791b5e14d"
         },
         {
           "path": "patches/sr2_patched.bin.slrxor.xz.part02",
           "size": 47185920,
-          "sha256": "dc8474a1e3dcab61a8cd25b6a3000d389aff6abbad4323e45e61ea969d5344f5"
+          "sha256": "7c434515b7cc897c9802d319eb6c50bf7e24eb25e691b15265f9571f7df72cfb"
         },
         {
           "path": "patches/sr2_patched.bin.slrxor.xz.part03",
           "size": 47185920,
-          "sha256": "0a82f13885eedb6beb31a3a97b9eeef8d2b4f1923727a5a07250a6e85d34a4fd"
+          "sha256": "a8190b94b533a9dbab027f7474d206f3428ecad7c8a98de99514df690c713065"
         },
         {
           "path": "patches/sr2_patched.bin.slrxor.xz.part04",
-          "size": 27495012,
-          "sha256": "e7083034cd60de6434a44ec40946db11c04cecee6cae42ecb4f715cf7bbdaf7b"
+          "size": 27497176,
+          "sha256": "b723a803f20edf6bb0c3c488ea875f0e5a6f9e0679091f166209c8238ed4c172"
         }
       ]
     },

@@ -27,6 +27,7 @@ The current patch includes:
 - all 7,092 story, interaction, choice, notification, and location records;
 - all 203 textual item, equipment, food, help, and configuration records;
 - all 88 textual battle-overlay records;
+- all 43 names in the separate ten-cell battle spell-selection catalog;
 - English fonts, wrapping, pagination, and runtime support for oversized
   translated scene modules;
 - one-row layout fixes for all audited selection menus, cursor-preserving
@@ -40,9 +41,10 @@ The current patch includes:
 - reviewed burned-in English subtitles for all ten FMV clips.
 
 The complete disc is rebuilt and independently checked for pointers, packed
-resources, selected FMV sectors, and unchanged XA audio sectors. The opening,
-local travel map, and Camp > Status screen have also been smoke-tested from a
-clean disc in PCSX-Redux. Broader route and full-playthrough QA are ongoing.
+resources, all 43 compact spell names, selected FMV sectors, and unchanged XA
+audio sectors. The opening, local travel map, and Camp > Status screen have
+also been smoke-tested from a clean disc in PCSX-Redux. Visual QA of the new
+spell catalog and broader route/full-playthrough QA are ongoing.
 
 ## What You Need
 
@@ -174,7 +176,7 @@ Expected results:
 
 | File | Size | SHA-256 |
 | --- | ---: | --- |
-| `sr2_patched.bin` | 737,095,632 bytes | `772256bac808b7a78240de24a5572a5f90535b3d14c6bf9d48ac29a500493f90` |
+| `sr2_patched.bin` | 737,095,632 bytes | `a40bceb1e7ffdc1ec384aaa9f8926c433760293171625d418fb0f0d1d3684966` |
 | `sr2_patched.cue` | 77 bytes | `7e0a6c027d263fa572337c7043d0aafabb7211333580699114e6544b65e5fabb` |
 
 Load `sr2_patched.cue`, not the BIN directly, in a PlayStation emulator.
