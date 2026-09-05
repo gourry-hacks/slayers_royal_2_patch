@@ -40,6 +40,10 @@ The current patch includes:
   headers and the `FULLNESS`, `STAMINA`, and `MORALE` labels;
 - reviewed burned-in English subtitles for all ten FMV clips.
 
+The final connected-prose pass reviewed all 7,092 scene records in source
+order and revised 1,270 records across all 21 modules for continuity,
+character voice, idiomatic English, and source accuracy.
+
 The complete disc is rebuilt and independently checked for pointers, packed
 resources, all 43 compact spell names, selected FMV sectors, and unchanged XA
 audio sectors. The opening, local travel map, and Camp > Status screen have
@@ -176,7 +180,7 @@ Expected results:
 
 | File | Size | SHA-256 |
 | --- | ---: | --- |
-| `sr2_patched.bin` | 737,095,632 bytes | `a40bceb1e7ffdc1ec384aaa9f8926c433760293171625d418fb0f0d1d3684966` |
+| `sr2_patched.bin` | 737,069,760 bytes | `35f467d3ba859d43cdaaa902e12609394cdd1b0050885db564485562b8b75727` |
 | `sr2_patched.cue` | 77 bytes | `7e0a6c027d263fa572337c7043d0aafabb7211333580699114e6544b65e5fabb` |
 
 Load `sr2_patched.cue`, not the BIN directly, in a PlayStation emulator.
