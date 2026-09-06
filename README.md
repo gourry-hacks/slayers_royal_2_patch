@@ -28,6 +28,7 @@ The current patch includes:
 - all 203 textual item, equipment, food, help, and configuration records;
 - all 88 textual battle-overlay records;
 - all 43 names in the separate ten-cell battle spell-selection catalog;
+- all 24 combatant-name sprites used by the battle HUD;
 - English fonts, wrapping, pagination, and runtime support for oversized
   translated scene modules;
 - one-row layout fixes for all audited selection menus, cursor-preserving
@@ -47,10 +48,11 @@ character voice, idiomatic English, and source accuracy.
 This release also contains additional localization updates.
 
 The complete disc is rebuilt and independently checked for pointers, packed
-resources, all 43 compact spell names, selected FMV sectors, and unchanged XA
-audio sectors. The opening, local travel map, and Camp > Status screen have
-also been smoke-tested from a clean disc in PCSX-Redux. Visual QA of the new
-spell catalog and broader route/full-playthrough QA are ongoing.
+resources, all 43 compact spell names, all 24 battle HUD names, selected FMV
+sectors, and unchanged XA audio sectors. The opening, local travel map, Camp >
+Status screen, battle names for the tested party, and the first Magic-menu page
+have been smoke-tested in PCSX-Redux. Broader route/full-playthrough QA is
+ongoing.
 
 ## What You Need
 
@@ -182,7 +184,7 @@ Expected results:
 
 | File | Size | SHA-256 |
 | --- | ---: | --- |
-| `sr2_patched.bin` | 737,069,760 bytes | `1a422fa3b5a5e30fa6d471438b016d11fc6a99d417f52222e59c1746ad114b5a` |
+| `sr2_patched.bin` | 737,048,592 bytes | `4bb7eb3907844a439901b271e7768726e8dff2f8553739c01cb89c7477a604cc` |
 | `sr2_patched.cue` | 77 bytes | `7e0a6c027d263fa572337c7043d0aafabb7211333580699114e6544b65e5fabb` |
 
 Load `sr2_patched.cue`, not the BIN directly, in a PlayStation emulator.
