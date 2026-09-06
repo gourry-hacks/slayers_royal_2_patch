@@ -44,6 +44,8 @@ The final connected-prose pass reviewed all 7,092 scene records in source
 order and revised 1,270 records across all 21 modules for continuity,
 character voice, idiomatic English, and source accuracy.
 
+This release also contains additional localization updates.
+
 The complete disc is rebuilt and independently checked for pointers, packed
 resources, all 43 compact spell names, selected FMV sectors, and unchanged XA
 audio sectors. The opening, local travel map, and Camp > Status screen have
@@ -180,7 +182,7 @@ Expected results:
 
 | File | Size | SHA-256 |
 | --- | ---: | --- |
-| `sr2_patched.bin` | 737,069,760 bytes | `35f467d3ba859d43cdaaa902e12609394cdd1b0050885db564485562b8b75727` |
+| `sr2_patched.bin` | 737,069,760 bytes | `1a422fa3b5a5e30fa6d471438b016d11fc6a99d417f52222e59c1746ad114b5a` |
 | `sr2_patched.cue` | 77 bytes | `7e0a6c027d263fa572337c7043d0aafabb7211333580699114e6544b65e5fabb` |
 
 Load `sr2_patched.cue`, not the BIN directly, in a PlayStation emulator.
