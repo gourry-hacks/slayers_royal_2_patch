@@ -22,10 +22,15 @@ refuses incompatible images.
 
 ## Patch Scope
 
-The current patch includes:
+Version **2026-09-07.1** includes:
 
 - all 7,092 story, interaction, choice, notification, and location records;
 - all 203 textual item, equipment, food, help, and configuration records;
+- all 58 persistent exploration conversations/tutorials, including fatigue,
+  hunger, morale, and travel reminders;
+- the remaining embedded item/food names, item-use results, shop/haggling,
+  restaurant, and inn text, including short choices and dynamic time/currency
+  inserts, plus nineteen card-message string copies;
 - all 88 textual battle-overlay records;
 - all 43 names in the separate ten-cell battle spell-selection catalog;
 - all 24 combatant-name sprites used by the battle HUD;
@@ -45,7 +50,10 @@ The final connected-prose pass reviewed all 7,092 scene records in source
 order and revised 1,270 records across all 21 modules for continuity,
 character voice, idiomatic English, and source accuracy.
 
-This release also contains additional localization updates.
+This release resolves all 468 outstanding fragments from the embedded-text
+audit and includes the short records missed by that initial scan. See
+[QA.md](QA.md) for validation and [KNOWN_ISSUES.md](KNOWN_ISSUES.md) for the
+remaining runtime limitations.
 
 The complete disc is rebuilt and independently checked for pointers, packed
 resources, all 43 compact spell names, all 24 battle HUD names, selected FMV
@@ -184,7 +192,7 @@ Expected results:
 
 | File | Size | SHA-256 |
 | --- | ---: | --- |
-| `sr2_patched.bin` | 737,048,592 bytes | `4bb7eb3907844a439901b271e7768726e8dff2f8553739c01cb89c7477a604cc` |
+| `sr2_patched.bin` | 737,048,592 bytes | `6cc6f4f28b8f0a432c0d0db013b287b5d5d956bd06e48fde190c9328418cb916` |
 | `sr2_patched.cue` | 77 bytes | `7e0a6c027d263fa572337c7043d0aafabb7211333580699114e6544b65e5fabb` |
 
 Load `sr2_patched.cue`, not the BIN directly, in a PlayStation emulator.
