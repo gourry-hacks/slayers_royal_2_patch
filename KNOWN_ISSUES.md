@@ -1,4 +1,4 @@
-# Known issues — 2026-09-07.1
+# Known issues — 2026-09-07.2
 
 - Broad route, audible voice/music, and full-game regression testing remain
   incomplete. All known text in the audited banks is translated; this is not
@@ -7,6 +7,12 @@
   This also reproduces with the original Japanese disc. A permanent timing
   correction is pending. The rejected phase-10 completion guard is excluded
   from this build.
+- The Status memory overwrite in 2026-09-07.1 is corrected. A savestate made
+  after that overwrite can retain damaged script data; applying the new disc
+  patch does not repair such a savestate.
+- A title-menu memory-card scan wait also reproduced on both original and
+  translated discs in the audit's PCSX-Redux/OpenBIOS setup. Its compatibility
+  cause is unresolved; normal save loading is not certified by this update.
 - Old emulator savestates contain the previous executable and text in RAM.
   Start the updated disc and load an in-game memory-card save to receive the
   new text. Loading an old savestate can restore old Japanese text and old code.

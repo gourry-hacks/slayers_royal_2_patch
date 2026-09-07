@@ -1,4 +1,25 @@
-# Validation — 2026-09-07.1
+# Validation — 2026-09-07.2
+
+The Status correction changes two call sites and installs two three-instruction
+thunks inside an existing reserved allocation. The compressed input moves from
+`0x80140000` to `0x80138000`; decoded output remains at `0x80100000`. Its new
+footprint is contained in the original Status routine's memory footprint.
+Native instruction replay checks every output write against unread input and
+produces the same 295,680 decoded bytes. The build rejects unsafe input growth,
+unsafe input/output overlap, changed caller instructions, and occupied thunk
+storage. Six focused regression tests pass.
+
+The completed full disc verifier passes, and comparison with 2026-09-07.1
+shows changes in only raw sectors 292 and 412. Every other sector, including
+all translated graphics/text, FMV, audio, and battle code, is identical.
+
+A fresh isolated PCSX-Redux process booted the full rebuilt disc and started a
+new game. The correction was read back from the loaded code without injecting
+RAM or loading an old savestate. Normal Camp > Status entry, Lina/Gourry page
+switching, and exit preserved every byte of the complete AREA window; the
+previous release changed 4,591 bytes. Subsequent Move navigation opened the
+town map. These checks address this regression; they do not certify a full
+playthrough or resolve the separate original-disc timing/card issues.
 
 The release candidate passes source hashes, translation/control/layout checks,
 all fixed allocations and relocated pointers, and complete patched-resource

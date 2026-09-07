@@ -22,7 +22,14 @@ refuses incompatible images.
 
 ## Patch Scope
 
-Version **2026-09-07.1** includes:
+Version **2026-09-07.2** fixes a memory overwrite when opening Camp > Status.
+The larger translated asset previously damaged live AREA script data while
+its screen still looked correct. This update moves only the temporary Status
+input buffer; translated graphics and text are unchanged. Restart from the
+updated disc: old emulator savestates retain the previous code and may retain
+already damaged script data.
+
+This version includes:
 
 - all 7,092 story, interaction, choice, notification, and location records;
 - all 203 textual item, equipment, food, help, and configuration records;
@@ -192,7 +199,7 @@ Expected results:
 
 | File | Size | SHA-256 |
 | --- | ---: | --- |
-| `sr2_patched.bin` | 737,048,592 bytes | `6cc6f4f28b8f0a432c0d0db013b287b5d5d956bd06e48fde190c9328418cb916` |
+| `sr2_patched.bin` | 737,048,592 bytes | `c528998b03b31127b9ab02a8b42afc49a66a924bc4eb32d70f79618008986ddd` |
 | `sr2_patched.cue` | 77 bytes | `7e0a6c027d263fa572337c7043d0aafabb7211333580699114e6544b65e5fabb` |
 
 Load `sr2_patched.cue`, not the BIN directly, in a PlayStation emulator.
