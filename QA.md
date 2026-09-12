@@ -1,4 +1,4 @@
-# Validation — 2026-09-07.2
+# Validation — 2026-09-11.1
 
 The Status correction changes two call sites and installs two three-instruction
 thunks inside an existing reserved allocation. The compressed input moves from

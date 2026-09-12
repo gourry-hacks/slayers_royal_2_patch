@@ -2,7 +2,7 @@
   "schema": 1,
   "project": "Slayers Royal 2 English Patch",
   "disc_id": "SLPS-02115",
-  "patch_version": "2026-09-07.2",
+  "patch_version": "2026-09-11.1",
   "source": {
     "bin": {
       "name": "sr2.bin",
@@ -18,8 +18,8 @@
   "target": {
     "bin": {
       "name": "sr2_patched.bin",
-      "size": 737048592,
-      "sha256": "c528998b03b31127b9ab02a8b42afc49a66a924bc4eb32d70f79618008986ddd"
+      "size": 737046240,
+      "sha256": "972a2f9d7c9d3ae57d6d6ade21e813d5168d5abc96d453e07940a4aaa84e0783"
     },
     "cue": {
       "name": "sr2_patched.cue",
@@ -32,31 +32,31 @@
       "format": "SLRXOR1",
       "storage": "xz",
       "block_size": 65536,
-      "record_count": 3033,
-      "delta_size": 198772324,
-      "delta_sha256": "e1aa022b9b6c7d6a8ed76118a9c1f4ac281a4c31011bfbd6c3e423ce3ebb6093",
-      "stored_size": 169087808,
-      "stored_sha256": "8946afee38d199ccf131f6ef337b7a9a6ae74bf55f00b2ad88b5c7f4870e65cd",
+      "record_count": 3039,
+      "delta_size": 199163260,
+      "delta_sha256": "ffc67f1a48f43c7d96b7409baf8c6d4d42fe989bde3827ec95688cb77f415d2c",
+      "stored_size": 169192612,
+      "stored_sha256": "6397db14801ccb3cf67ae224cc6ff85c4b3a8ad5ddec31869e11989f5283ba8e",
       "parts": [
         {
           "path": "patches/sr2_patched.bin.slrxor.xz.part01",
           "size": 47185920,
-          "sha256": "ec47872af66997f5374df0706a0b68d57e5ab5702315e9c4c14546c88f3e5fa2"
+          "sha256": "e39eebbd6053f0db4f6f8ae1e97d6cbb76d19c7569defa8417cdf0d1a49f424d"
         },
         {
           "path": "patches/sr2_patched.bin.slrxor.xz.part02",
           "size": 47185920,
-          "sha256": "7a4139efed7707f97595de8237bcc7922ff33a899fb32bff386bef30f4b26d1c"
+          "sha256": "8c64301cc1e2dca5cbfbf5e65741b1135ca85fbaa3018e05469cd06d79b50864"
         },
         {
           "path": "patches/sr2_patched.bin.slrxor.xz.part03",
           "size": 47185920,
-          "sha256": "678c461a1fe8826c41fd03f33f14aa913b503eec692a1eb628cd058123c03702"
+          "sha256": "ae34d8281967456d52da3bcf6581d7b70be1873ac5a6bef9e018164e107b5571"
         },
         {
           "path": "patches/sr2_patched.bin.slrxor.xz.part04",
-          "size": 27530048,
-          "sha256": "5618d66763ef7f811d11826bd44882cef2c8bfb2b0b0070fb0d9ccc7debb42c9"
+          "size": 27634852,
+          "sha256": "729d8829e6f0fb7810a9977b1e3ccb5c1189de4a2486f4c55ebaf97d0678ec28"
         }
       ]
     },

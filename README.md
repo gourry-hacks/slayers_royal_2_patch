@@ -22,7 +22,8 @@ refuses incompatible images.
 
 ## Patch Scope
 
-Version **2026-09-07.2** fixes a memory overwrite when opening Camp > Status.
+Version **2026-09-11.1** includes the Camp > Status memory correction and a
+full naturalness review of the translated dialogue.
 The larger translated asset previously damaged live AREA script data while
 its screen still looked correct. This update moves only the temporary Status
 input buffer; translated graphics and text are unchanged. Restart from the
@@ -54,8 +55,9 @@ This version includes:
 - reviewed burned-in English subtitles for all ten FMV clips.
 
 The final connected-prose pass reviewed all 7,092 scene records in source
-order and revised 1,270 records across all 21 modules for continuity,
-character voice, idiomatic English, and source accuracy.
+order. This update additionally revises 302 scene records, 34 shared records,
+and 8 movie cues for continuity, character voice, idiomatic English, and source
+accuracy.
 
 This release resolves all 468 outstanding fragments from the embedded-text
 audit and includes the short records missed by that initial scan. See
