@@ -20,6 +20,10 @@ It does **not** include the game. You must provide your own matching BIN/CUE
 dump of the original disc. The patcher checks the complete source hashes and
 refuses incompatible images.
 
+![Slayers Royal 2 with English subtitles](assets/royal2-english-screenshot.png)
+
+An in-game FMV frame from the English patch.
+
 ## Patch Scope
 
 Version **2026-09-11.1** includes the Camp > Status memory correction and a
