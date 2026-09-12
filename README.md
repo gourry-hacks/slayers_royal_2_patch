@@ -205,7 +205,7 @@ Expected results:
 
 | File | Size | SHA-256 |
 | --- | ---: | --- |
-| `sr2_patched.bin` | 737,048,592 bytes | `c528998b03b31127b9ab02a8b42afc49a66a924bc4eb32d70f79618008986ddd` |
+| `sr2_patched.bin` | 737,046,240 bytes | `972a2f9d7c9d3ae57d6d6ade21e813d5168d5abc96d453e07940a4aaa84e0783` |
 | `sr2_patched.cue` | 77 bytes | `7e0a6c027d263fa572337c7043d0aafabb7211333580699114e6544b65e5fabb` |
 
 Load `sr2_patched.cue`, not the BIN directly, in a PlayStation emulator.
@@ -272,3 +272,10 @@ and byte-compare its output with the canonical BIN/CUE before publishing.
 The game, characters, audiovisual material, and other original assets remain
 the property of their respective rights holders. This repository distributes
 only patching code and source-dependent binary differences.
+
+## Other languages
+
+The [localization toolkit](localization/README.md) exports Japanese scene text
+to editable PO files and builds a localized disc with custom font glyphs. It
+includes Russian, French, Spanish, and German language definitions. These are
+authoring presets, not completed translations.

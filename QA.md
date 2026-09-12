@@ -1,3 +1,35 @@
+# Localization toolkit verification — 2026-09-12
+
+The new `localize.py` workflow is additive; the packaged English XOR parts,
+release manifest and canonical disc files are unchanged.
+
+- Exported 7,122 entries from the verified original disc, with English
+  reference text reconstructed from the release patch.
+- An empty catalog with English fallback reproduces the canonical English BIN
+  SHA-256 exactly: `972a2f9d7c9d3ae57d6d6ade21e813d5168d5abc96d453e07940a4aaa84e0783`.
+- A partial Cyrillic build exercises actual localized text and font generation.
+  Royal 2's opening uses the compressed-scene path, with unedited records
+  expanded/recompressed and pointers checked on readback.
+- Complete synthetic Cyrillic catalogs exercise every supported record and
+  preserve untouched resources/code/control data. Synthetic strings test the
+  compiler; they are not translations or evidence of a full playthrough.
+- Independent PCSX-Redux C EDC/ECC regeneration agrees on every modified or
+  appended sector. The Python writer is not its own only checksum oracle.
+- Russian, French, Spanish and German authoring presets compile with their
+  complete reserved alphabets and representative accented text. Glyph proof
+  sheets are generated for visual review; font lookup/allocation is bounded.
+- Focused tests cover source/ID/control changes, duplicates, fuzzy entries,
+  Unicode/layout rejection, output-path containment, fixed extents and Form 2
+  write rejection. Game-specific tests exercise relocation/dictionaries/font
+  compression (Royal 2) or ELS offsets/carrier encoding (Wonderful).
+
+These tests establish build/readback coverage, not emulator playability of a
+finished localization. No complete target-language catalog exists yet. Newly
+localized text, accents and scene layouts require emulator review before
+publishing a language patch. The toolkit README lists excluded text/art domains.
+Private evidence and generated catalogs are in `qa/localization_20260912/` in
+the Slayers workspace; original-disc text and test disc images are not committed.
+
 # Validation — 2026-09-11.1
 
 The Status correction changes two call sites and installs two three-instruction
