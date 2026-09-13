@@ -175,20 +175,21 @@ python3 patch.py \
   --cue "/path/to/sr2.cue"
 ```
 
-The optional battle timing workaround can be enabled explicitly:
+The battle timing workaround is enabled by default. To reproduce the legacy
+timing, omit it explicitly:
 
 ```bash
 python3 patch.py \
   --bin "/path/to/sr2.bin" \
   --cue "/path/to/sr2.cue" \
-  --vsync-patch
+  --no-vsync-patch
 ```
 
-`--vsync-patch` changes the battle VSync wait from zero to two vertical blanks
-and repairs the affected CD sector checksums. It is intended for emulator or
-hardware setups that reproduce the first Naga battle effect freeze. The option
-is opt-in; without it, the output is byte-for-byte the normal release image.
-Because it changes battle timing globally, validate it on your target device.
+The default patch changes the battle VSync wait from zero to two vertical
+blanks and repairs the affected CD sector checksums. It addresses emulator or
+hardware setups that reproduce the first Naga battle effect freeze. Use
+`--no-vsync-patch` only to reproduce the legacy timing; that output is
+byte-for-byte the normal release image.
 
 Windows:
 
@@ -216,16 +217,15 @@ output/
   sr2_patched.cue
 ```
 
-Expected results without `--vsync-patch`:
+Expected results with `--no-vsync-patch`:
 
 | File | Size | SHA-256 |
 | --- | ---: | --- |
 | `sr2_patched.bin` | 737,046,240 bytes | `972a2f9d7c9d3ae57d6d6ade21e813d5168d5abc96d453e07940a4aaa84e0783` |
 | `sr2_patched.cue` | 77 bytes | `7e0a6c027d263fa572337c7043d0aafabb7211333580699114e6544b65e5fabb` |
 
-With `--vsync-patch`, the CUE hash is unchanged and the BIN hash differs
-because the battle timing instruction is deliberately modified. The current
-opt-in BIN hash is
+With the default VSync patch, the CUE hash is unchanged and the BIN hash differs
+because the battle timing instruction is deliberately modified. The BIN hash is
 `10aadf41fddd10bbe6c14f7dd5f43f97c2fdae48b262086132d3289ddb051e08`.
 
 Load `sr2_patched.cue`, not the BIN directly, in a PlayStation emulator.

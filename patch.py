@@ -298,7 +298,7 @@ def apply_xor_delta(
 
 
 def apply_vsync_patch(path: Path) -> dict[str, object]:
-    """Apply the optional battle timing workaround to a patched BIN."""
+    """Apply the battle timing workaround to a patched BIN."""
     sector_lba = BATTLE_LBA + BATTLE_VSYNC_OFFSET // BATTLE_USER_SIZE
     sector_offset = sector_lba * RAW_SECTOR_SIZE
     word_offset = USER_DATA_OFFSET + BATTLE_VSYNC_OFFSET % BATTLE_USER_SIZE
@@ -371,9 +371,9 @@ def parse_args() -> argparse.Namespace:
         "--force", action="store_true", help="replace existing output files"
     )
     parser.add_argument(
-        "--vsync-patch",
+        "--no-vsync-patch",
         action="store_true",
-        help="apply the optional VSync(2) battle timing workaround",
+        help="omit the VSync(2) battle timing workaround (legacy behavior)",
     )
     return parser.parse_args()
 
@@ -432,8 +432,8 @@ def main() -> int:
                 verify_file(
                     f"patched {kind.upper()}", temporary_paths[kind], targets[kind]
                 )
-            if args.vsync_patch:
-                print("applying optional VSync(2) battle timing patch...")
+            if not args.no_vsync_patch:
+                print("applying VSync(2) battle timing patch...")
                 vsync_report = apply_vsync_patch(temporary_paths["bin"])
             for kind in ("bin", "cue"):
                 os.replace(temporary_paths[kind], final_paths[kind])
@@ -444,9 +444,9 @@ def main() -> int:
         print("patch complete:")
         for kind in ("bin", "cue"):
             print(f"  {final_paths[kind]}")
-        if args.vsync_patch:
+        if not args.no_vsync_patch:
             print(
-                "  optional VSync(2) battle timing patch enabled "
+                "  VSync(2) battle timing patch enabled "
                 f"at LBA {vsync_report['lba']}"
             )
         return 0
