@@ -2,7 +2,7 @@
   "schema": 1,
   "project": "Slayers Royal 2 English Patch",
   "disc_id": "SLPS-02115",
-  "patch_version": "2026-09-11.1",
+  "patch_version": "2026-09-13.1",
   "source": {
     "bin": {
       "name": "sr2.bin",

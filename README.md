@@ -26,7 +26,7 @@ An in-game FMV frame from the English patch.
 
 ## Patch Scope
 
-Version **2026-09-11.1** includes the Camp > Status memory correction and a
+Version **2026-09-13.1** includes the Camp > Status memory correction and a
 full naturalness review of the translated dialogue.
 The larger translated asset previously damaged live AREA script data while
 its screen still looked correct. This update moves only the temporary Status
