@@ -23,9 +23,74 @@ RECORD = struct.Struct("<QI")
 REPO_ROOT = Path(__file__).resolve().parent
 MANIFEST_PATH = REPO_ROOT / "release_manifest.json"
 
+# BATTLE overlay address 0x8004ACC0 maps this instruction to BATTLE.BIN
+# offset 0x18ACC.  The instruction is inside a Mode 2 Form 1 sector in the
+# released disc image, so changing it requires regenerating EDC/ECC.
+RAW_SECTOR_SIZE = 2352
+USER_DATA_OFFSET = 24
+BATTLE_LBA = 786
+BATTLE_USER_SIZE = 2048
+BATTLE_VSYNC_OFFSET = 0x18ACC
+VSYNC_DEFAULT_WORD = 0x00002021  # move a0, zero (VSync(0))
+VSYNC_PATCHED_WORD = 0x24040002  # addiu a0, zero, 2 (VSync(2))
+
 
 class PatchError(RuntimeError):
     pass
+
+
+class CdChecksums:
+    """EDC/ECC regeneration for Mode 2 Form 1 sectors."""
+
+    def __init__(self) -> None:
+        self.ecc_f = [0] * 256
+        self.ecc_b = [0] * 256
+        self.edc = [0] * 256
+        for value in range(256):
+            forward = ((value << 1) ^ (0x11D if value & 0x80 else 0)) & 0xFF
+            self.ecc_f[value] = forward
+            self.ecc_b[value ^ forward] = value
+            crc = value
+            for _ in range(8):
+                crc = (crc >> 1) ^ (0xD8018001 if crc & 1 else 0)
+            self.edc[value] = crc
+
+    def compute_edc(self, data: bytes) -> bytes:
+        crc = 0
+        for value in data:
+            crc = (crc >> 8) ^ self.edc[(crc ^ value) & 0xFF]
+        return crc.to_bytes(4, "little")
+
+    def compute_ecc(
+        self,
+        source: bytes,
+        major_count: int,
+        minor_count: int,
+        major_mult: int,
+        minor_inc: int,
+    ) -> bytes:
+        address = b"\0\0\0\0"
+        length = major_count * minor_count
+        output = bytearray(major_count * 2)
+        for major in range(major_count):
+            index = (major >> 1) * major_mult + (major & 1)
+            ecc_a = 0
+            ecc_b = 0
+            for _ in range(minor_count):
+                value = address[index] if index < 4 else source[index - 4]
+                index = (index + minor_inc) % length
+                ecc_a ^= value
+                ecc_b ^= value
+                ecc_a = self.ecc_f[ecc_a]
+            ecc_a = self.ecc_b[self.ecc_f[ecc_a] ^ ecc_b]
+            output[major] = ecc_a
+            output[major + major_count] = ecc_a ^ ecc_b
+        return bytes(output)
+
+    def repair_mode2_form1(self, sector: bytearray) -> None:
+        sector[0x818:0x81C] = self.compute_edc(sector[0x10:0x818])
+        sector[0x81C:0x8C8] = self.compute_ecc(sector[0x10:], 86, 24, 2, 86)
+        sector[0x8C8:0x930] = self.compute_ecc(sector[0x10:], 52, 43, 86, 88)
 
 
 def sha256_file(path: Path) -> tuple[str, int]:
@@ -232,6 +297,42 @@ def apply_xor_delta(
         raise PatchError("XOR container hash does not match the manifest")
 
 
+def apply_vsync_patch(path: Path) -> dict[str, object]:
+    """Apply the optional battle timing workaround to a patched BIN."""
+    sector_lba = BATTLE_LBA + BATTLE_VSYNC_OFFSET // BATTLE_USER_SIZE
+    sector_offset = sector_lba * RAW_SECTOR_SIZE
+    word_offset = USER_DATA_OFFSET + BATTLE_VSYNC_OFFSET % BATTLE_USER_SIZE
+    byte_offset = sector_offset + word_offset
+    checksums = CdChecksums()
+    with path.open("r+b") as image:
+        image.seek(sector_offset)
+        sector = bytearray(image.read(RAW_SECTOR_SIZE))
+        if len(sector) != RAW_SECTOR_SIZE:
+            raise PatchError("patched BIN ends before the BATTLE sync instruction")
+        if sector[15] != 2 or sector[18] & 0x20:
+            raise PatchError("BATTLE sync instruction is not in a Mode 2 Form 1 sector")
+        current = int.from_bytes(sector[word_offset : word_offset + 4], "little")
+        if current != VSYNC_DEFAULT_WORD:
+            raise PatchError(
+                "BATTLE sync instruction has unexpected value: "
+                f"0x{current:08x} (expected 0x{VSYNC_DEFAULT_WORD:08x})"
+            )
+        sector[word_offset : word_offset + 4] = VSYNC_PATCHED_WORD.to_bytes(4, "little")
+        checksums.repair_mode2_form1(sector)
+        image.seek(sector_offset)
+        image.write(sector)
+        image.flush()
+        os.fsync(image.fileno())
+    return {
+        "enabled": True,
+        "lba": sector_lba,
+        "disc_byte_offset": byte_offset,
+        "battle_bin_offset": BATTLE_VSYNC_OFFSET,
+        "before": f"0x{VSYNC_DEFAULT_WORD:08x}",
+        "after": f"0x{VSYNC_PATCHED_WORD:08x}",
+    }
+
+
 def temporary_output(output_dir: Path, name: str) -> Path:
     descriptor, temporary = tempfile.mkstemp(
         prefix=f".{name}.", suffix=".tmp", dir=output_dir
@@ -268,6 +369,11 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--force", action="store_true", help="replace existing output files"
+    )
+    parser.add_argument(
+        "--vsync-patch",
+        action="store_true",
+        help="apply the optional VSync(2) battle timing workaround",
     )
     return parser.parse_args()
 
@@ -312,6 +418,7 @@ def main() -> int:
             kind: temporary_output(output_dir, final_paths[kind].name)
             for kind in ("bin", "cue")
         }
+        vsync_report: dict[str, object] = {"enabled": False}
         try:
             for kind in ("bin", "cue"):
                 print(f"applying {kind.upper()} XOR patch...")
@@ -325,6 +432,9 @@ def main() -> int:
                 verify_file(
                     f"patched {kind.upper()}", temporary_paths[kind], targets[kind]
                 )
+            if args.vsync_patch:
+                print("applying optional VSync(2) battle timing patch...")
+                vsync_report = apply_vsync_patch(temporary_paths["bin"])
             for kind in ("bin", "cue"):
                 os.replace(temporary_paths[kind], final_paths[kind])
         finally:
@@ -334,6 +444,11 @@ def main() -> int:
         print("patch complete:")
         for kind in ("bin", "cue"):
             print(f"  {final_paths[kind]}")
+        if args.vsync_patch:
+            print(
+                "  optional VSync(2) battle timing patch enabled "
+                f"at LBA {vsync_report['lba']}"
+            )
         return 0
     except (PatchError, KeyError, TypeError, AssertionError, OSError) as exc:
         print(f"error: {exc}", file=sys.stderr)

@@ -4,9 +4,10 @@
   incomplete. All known text in the audited banks is translated; this is not
   a claim that every possible screen has been reached in a playthrough.
 - PCSX-Redux can stall during battle effects with its current VBlank cadence.
-  This also reproduces with the original Japanese disc. A permanent timing
-  correction is pending. The rejected phase-10 completion guard is excluded
-  from this build.
+  This also reproduces with the original Japanese disc. The patcher provides
+  an opt-in `--vsync-patch` workaround that changes the battle wait cadence;
+  validate it on the target emulator or hardware. The rejected phase-10
+  completion guard is excluded from this build.
 - The Status memory overwrite in 2026-09-07.1 is corrected. A savestate made
   after that overwrite can retain damaged script data; applying the new disc
   patch does not repair such a savestate.
