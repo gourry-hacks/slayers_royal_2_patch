@@ -1,8 +1,11 @@
-# Known issues — 2026-09-07.2
+# Known issues — 2026-10-17.1
 
 - Broad route, audible voice/music, and full-game regression testing remain
   incomplete. All known text in the audited banks is translated; this is not
   a claim that every possible screen has been reached in a playthrough.
+- The story-clarity audit fixes misleading English but does not invent lore:
+  some questions about the towers' origins and the attempted summoning remain
+  unanswered in the Japanese source. No missing explanatory scene was found.
 - Some emulators can stall during battle effects with their current VBlank
   cadence. This also reproduces with the original Japanese disc. The patcher
   now enables the VSync(2) battle wait workaround by default; use

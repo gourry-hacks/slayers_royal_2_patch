@@ -1,3 +1,49 @@
+# Story-clarity update — 2026-10-17.1
+
+The release contains the accumulated English revisions through October 17,
+including the latest 12 source-led story-clarity corrections. The latest
+audit screened 8,098 text units and manually compared 2,970 contextual units;
+it is not a new manual certification of every line or a full playthrough.
+
+The most significant corrections are the remaining sealing *task* in
+`M13-V0111`, the shared *reason* behind the choices in `M13-V0137`, and the
+restored hideout direction in `M00-V0136`. Other edits preserve the recurring
+rules terminology, distinguish deductions from facts, clarify references,
+and restore a cave route-history clue. No explanatory lore was invented.
+The source-coverage rescan found zero unaccounted-for event-text spans.
+
+The production build passes 36-column/three-row layout checks, all 69 audited
+choices, 48 joined-dialogue pairs, and the raw event-control/transition audit.
+The 12 newly corrected passages preserve segment/control sequences and do not
+increase page counts relative to the preceding English version. Callback
+regressions pass across 52 groups and 116 source-identical route pairs.
+
+Release packaging and toolkit checks:
+
+- Independent disc readback passes for the rebuilt release base, including
+  all 7,092 scene records, 203 global records, 88 battle records, 3,948 scene
+  pointers, translated fixed assets, and all ten FMV patches.
+- Applying the public XOR package to the supported originals reproduces both
+  BIN and CUE byte-for-byte. Default VSync(2) output matches the current
+  verified English image (`104ec54d6d749d805a00b3a96c69362cb1673b42d6fed6cfc6363af6a6723874`).
+  `--no-vsync-patch` reproduces the base recorded in `release_manifest.json`
+  (`ab1ea9de1b80bdbdc2adaf2f3df8f2d446f164d2d5ffd5099725768a19e79408`).
+- The localization range index was regenerated only after matching every
+  rebuilt AREA against the new release base. Export produces all 7,122 entries;
+  an empty catalog's English-fallback build is byte-identical to that base.
+- A partial Cyrillic compilation exercises 70 locale glyphs and the large
+  tokenized opening AREA, passing font budgets, script and pointer readback,
+  and the fixed 196,292-byte AREA limit. This is a compiler probe, not a
+  finished Russian translation or an emulator playthrough.
+- Twelve focused toolkit tests pass, including a new regression for five
+  corrected original-font readings. The original mountain and thousand cells
+  remain distinct from the corrected lake, ten, and hundred cells.
+
+The previous static, runtime and localization evidence below is historical;
+it does not imply that every October edit has been revisited in an emulator.
+Private memory cards, generated source catalogs, disc images, and private
+app configuration are not part of this repository update.
+
 # Localization toolkit verification — 2026-09-12
 
 The new `localize.py` workflow is additive; the packaged English XOR parts,

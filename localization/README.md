@@ -94,6 +94,14 @@ initial toolkit. The Linux-native game is not modified by this tool.
 
 ## Maintainer checks
 
+Release 2026-10-17.1 refreshes the pinned English base and all scene ranges.
+It also corrects five source-glyph readings (including lake versus mountain
+and ten versus hundred). Export a new catalog into a separate directory when
+upgrading from an older release, then transfer and review existing translations
+by stable ID. Do not overwrite an existing catalog or blindly replace its
+Japanese `msgid` fields; the validator intentionally rejects changed source.
+Generated source inventories and disc images remain private.
+
 ```sh
 python3 -m unittest discover -s localization/tests -v
 ```

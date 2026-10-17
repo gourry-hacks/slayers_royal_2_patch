@@ -26,17 +26,26 @@ An in-game FMV frame from the English patch.
 
 ## Patch Scope
 
-Version **2026-09-13.1** includes the Camp > Status memory correction and a
-full naturalness review of the translated dialogue.
-The larger translated asset previously damaged live AREA script data while
-its screen still looked correct. This update moves only the temporary Status
-input buffer; translated graphics and text are unchanged. Restart from the
-updated disc: old emulator savestates retain the previous code and may retain
-already damaged script data.
+Version **2026-10-17.1** brings the public patch up to date with the current
+English build, including the accumulated dialogue, callback, terminology,
+battle-help and FMV corrections, and the latest story-clarity audit.
+
+The latest audit corrects 12 passages: ambiguous ending dialogue, Alicia's
+rules, Robert's explanation, Guardian terminology, book/scroll references,
+and two navigation clues. It screened 8,098 text units and manually compared
+2,970 contextual units against Japanese; this is not a claim of a fresh
+line-by-line translation of the entire game. No missing explanatory scene
+was found. Questions left unanswered by the Japanese story remain unanswered.
+
+The earlier Camp > Status memory correction and default VSync(2) battle
+timing workaround are retained. Restart from the updated disc and load an
+in-game memory-card save: old emulator savestates retain old text and code.
+This release does not modify memory-card saves or add a story-progress hack.
 
 This version includes:
 
 - all 7,092 story, interaction, choice, notification, and location records;
+- 30 recovered scene-text fragments and all 78 shared post-meal events;
 - all 203 textual item, equipment, food, help, and configuration records;
 - all 58 persistent exploration conversations/tutorials, including fatigue,
   hunger, morale, and travel reminders;
@@ -56,12 +65,12 @@ This version includes:
   sublocation labels;
 - translated Camp > Status pages for every party member, including character
   headers and the `FULLNESS`, `STAMINA`, and `MORALE` labels;
-- reviewed burned-in English subtitles for all ten FMV clips.
+- 156 reviewed burned-in English subtitle cues across all ten FMV clips.
 
-The final connected-prose pass reviewed all 7,092 scene records in source
-order. This update additionally revises 302 scene records, 34 shared records,
-and 8 movie cues for continuity, character voice, idiomatic English, and source
-accuracy.
+Earlier connected-prose and naturalness passes are included, followed by
+cross-scene callback reviews and the source-led story corrections above.
+The latest edits preserve the original controls and segment counts and do
+not add pages relative to the preceding English text.
 
 This release resolves all 468 outstanding fragments from the embedded-text
 audit and includes the short records missed by that initial scan. See
@@ -221,12 +230,12 @@ Expected results with `--no-vsync-patch`:
 
 | File | Size | SHA-256 |
 | --- | ---: | --- |
-| `sr2_patched.bin` | 737,046,240 bytes | `972a2f9d7c9d3ae57d6d6ade21e813d5168d5abc96d453e07940a4aaa84e0783` |
+| `sr2_patched.bin` | 737,039,184 bytes | `ab1ea9de1b80bdbdc2adaf2f3df8f2d446f164d2d5ffd5099725768a19e79408` |
 | `sr2_patched.cue` | 77 bytes | `7e0a6c027d263fa572337c7043d0aafabb7211333580699114e6544b65e5fabb` |
 
 With the default VSync patch, the CUE hash is unchanged and the BIN hash differs
 because the battle timing instruction is deliberately modified. The BIN hash is
-`10aadf41fddd10bbe6c14f7dd5f43f97c2fdae48b262086132d3289ddb051e08`.
+`104ec54d6d749d805a00b3a96c69362cb1673b42d6fed6cfc6363af6a6723874`.
 
 Load `sr2_patched.cue`, not the BIN directly, in a PlayStation emulator.
 
@@ -275,13 +284,21 @@ The machine-readable source, patch-part, and output hashes are recorded in
 
 This section is for translation maintainers, not ordinary users.
 
-With the repository at `royal2/slayers_royal_2/`, the original files at
-`royal2/sr2.bin` and `royal2/sr2.cue`, and canonical translated files under
-`royal2/patched/`, regenerate the release with:
+From the private production workspace, with this repository at
+`royal2/slayers_royal_2/` and the originals at `royal2/sr2.bin` and
+`royal2/sr2.cue`, build a separate release base **without** `--vsync-patch`:
 
 ```bash
+python3 tools/build_sr2_patch.py --output-dir royal2/build/release_base
 python3 royal2/slayers_royal_2/maintainer/build_release.py
+python3 royal2/slayers_royal_2/maintainer/build_localization_layout.py \
+  --workspace . --english-bin royal2/build/release_base/sr2_patched.bin
 ```
+
+The consumer patcher applies VSync(2) by default after reconstructing that
+base. Do not package an already VSync-patched BIN: the guarded instruction
+check would correctly reject applying the workaround twice. This workflow
+does not replace the private app's current VSync-enabled image.
 
 Use `--help` to override those paths. Building the highly compressed release
 requires approximately 1 GiB of RAM. Always run the consumer patcher afterward

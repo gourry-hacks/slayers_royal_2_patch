@@ -4,8 +4,15 @@ from localization.area import Edit, OffsetMap, transform_area
 from localization.tokens import build_token_dictionary, expand_token_words, append_area_dictionary, read_area_dictionary, AREA_LOCAL_CAPACITY
 from localization.english import CHAR_TO_GLYPH
 from localization.lzss import compress, decompress
+from localization.charmap import CHARMAP
 
 class Royal2Tests(unittest.TestCase):
+
+    def test_source_glyph_readings(self):
+        self.assertEqual([CHARMAP[n] for n in (0x0294, 0x02C6, 0x0315, 0x0347, 0x0365)],
+                         ['堂', '登', '十', '百', '湖'])
+        self.assertEqual(CHARMAP[0x03DD], '千')
+        self.assertEqual(CHARMAP[0x020C], '山')
 
     def test_relocation_and_unsafe_interior_anchor(self):
         area = bytearray(32)
