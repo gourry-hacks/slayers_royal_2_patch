@@ -1,17 +1,43 @@
 # Slayers Royal 2 English Patch
 
-## TL;DR
+## Quick Start: Windows and Linux
 
-1. Provide your own supported `sr2.bin` and prepare the exact `sr2.cue`
-   described below. The required BIN SHA-256 is
-   `f3c307b4ba5fd5687da6a24338df2d214a680670239ed93488285007431503e9`.
-2. Run:
+1. [Download the complete patch ZIP](https://github.com/gourry-hacks/slayers_royal_2_patch/archive/refs/heads/main.zip)
+   and extract it. Keep the `patches` folder beside `patch.py`.
+2. Install [Python 3.10 or newer](https://www.python.org/downloads/) if needed.
+   On Windows, include the Python launcher so the `py` command works;
+   on Linux, use `python3`.
+3. Copy your own [supported original Japanese disc image](#1-prepare-the-original-files)
+   into the extracted folder containing `patch.py`, and name the copy `sr2.bin`.
+   Then follow the steps for your operating system below.
 
-   ```bash
-   python3 patch.py --bin "/path/to/sr2.bin" --cue "/path/to/sr2.cue"
-   ```
+### Windows
 
-3. Load `output/sr2_patched.cue` in a PlayStation emulator.
+Open the extracted folder in File Explorer, type `powershell` in its address bar,
+and press Enter. Paste these commands to create the required CUE file and patch
+your image:
+
+```powershell
+$cue = "FILE `"sr2.bin`" BINARY`r`n  TRACK 01 MODE2/2352`r`n    INDEX 01 00:00:00`r`n"
+[System.IO.File]::WriteAllBytes((Join-Path $PWD "sr2.cue"), [System.Text.Encoding]::ASCII.GetBytes($cue))
+py -3 patch.py --bin sr2.bin --cue sr2.cue
+```
+
+### Linux
+
+Open a terminal in the extracted folder. Paste these commands to create the
+required CUE file and patch your image:
+
+```bash
+python3 -c 'from pathlib import Path; Path("sr2.cue").write_bytes(b"FILE \"sr2.bin\" BINARY\r\n  TRACK 01 MODE2/2352\r\n    INDEX 01 00:00:00\r\n")'
+python3 patch.py --bin sr2.bin --cue sr2.cue
+```
+
+After the patcher reports success, open **`output/sr2_patched.cue`** in your
+PlayStation emulator. Keep the generated BIN and CUE together in `output`.
+Your source BIN is unchanged. If verification fails, check the
+[supported image details](#1-prepare-the-original-files) and
+[troubleshooting](#troubleshooting) below.
 
 This repository patches the Japanese PlayStation release of *Slayers Royal 2*
 (`SLPS-02115`) into English.
@@ -140,7 +166,7 @@ Windows:
 
 ```powershell
 $cue = "FILE `"sr2.bin`" BINARY`r`n  TRACK 01 MODE2/2352`r`n    INDEX 01 00:00:00`r`n"
-[System.IO.File]::WriteAllBytes("sr2.cue", [System.Text.Encoding]::ASCII.GetBytes($cue))
+[System.IO.File]::WriteAllBytes((Join-Path $PWD "sr2.cue"), [System.Text.Encoding]::ASCII.GetBytes($cue))
 ```
 
 Creating this descriptor does not modify the BIN or any game data.
